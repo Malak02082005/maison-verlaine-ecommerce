@@ -5,3 +5,8 @@ dist/
 # Videos are too big for GitHub; upload them elsewhere and link them in the README
 *.mp4
 *.mov
+
+# Playwright (end-to-end test results)
+test-results/
+e2e-report/
+playwright/.cache/

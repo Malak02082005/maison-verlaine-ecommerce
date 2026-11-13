@@ -141,6 +141,8 @@ To see a declined payment, use `4000 0000 0000 0002`. Test payments appear in th
 
 ## Automated tests
 
+### API tests
+
 ```bash
 cd server
 npm test
@@ -151,6 +153,28 @@ The tests run against an in-memory database with Stripe faked, so they don't nee
 - browsing, filtering and managing products
 - the full order flow: placing an order, card and cash payments, stock reservation, cancelling with a reason, and admin status updates
 - admin stock and customer management
+
+### End-to-end browser tests
+
+```bash
+cd client
+npm run test:e2e
+```
+
+These tests use [Playwright](https://playwright.dev) to click through the real website in Google Chrome, the way a customer and an admin would. Playwright starts its own API (port 5181) with a fresh in-memory database and its own frontend (port 5185), so your real database is never touched and your normal dev servers can keep running. Google Chrome must be installed.
+
+The 21 tests cover these workflows from start to finish:
+
+| Area | What is tested |
+| --- | --- |
+| Product catalogue | Home page, filters (category, type, colour with search), sorting, header search, product pages, unknown products |
+| Shopping cart | Adding, changing and removing items, shipping fee vs. free shipping, cart kept after reload, stock limits, login required for checkout |
+| User accounts | Register and get sent to the login page, wrong password, changing name and password, protected customer and admin pages |
+| Orders | Cash-on-delivery order from cart to delivery with stock going down, cancelling with a reason by the customer and by the admin, admin customer overview |
+| Product management | Admin adds, edits and deletes a product; sells out and restocks a product |
+| Card payments | Paying with Stripe's test card and an admin refund; a declined card. Only runs when the Stripe test keys are set, otherwise skipped |
+
+After a run, `npm run test:e2e:report` opens a report with screenshots of any failed test.
 
 ## API overview
 
