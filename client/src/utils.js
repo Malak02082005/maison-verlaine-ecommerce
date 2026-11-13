@@ -16,6 +16,9 @@ export const ORDER_STATUS = {
 };
 
 // "#64b7f0c2a1b2c3d4e5f60718" → "#F60718" (short, readable order number)
+// plural(1, 'item') → "1 item", plural(3, 'item') → "3 items"
+export const plural = (count, word) => `${count} ${count === 1 ? word : `${word}s`}`;
+
 export const orderNumber = (id) => `#${String(id).slice(-6).toUpperCase()}`;
 
 export const totalStock = (product) => (product.sizes || []).reduce((sum, s) => sum + s.stock, 0);

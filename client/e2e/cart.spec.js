@@ -7,7 +7,7 @@ const summary = (page, label) => page.locator('.summary-row', { hasText: label }
 test.describe('Shopping cart', () => {
   test('add, change and remove items', async ({ page }) => {
     await addToCart(page, 'leather-belt'); // €69.00
-    await expect(page.getByRole('link', { name: 'Cart, 1 items' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Cart, 1 item' })).toBeVisible();
 
     await page.getByRole('link', { name: 'View cart' }).click();
     await expect(page.getByRole('heading', { level: 1, name: 'Your cart' })).toBeVisible();

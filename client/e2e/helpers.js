@@ -7,10 +7,10 @@ export const ADMIN = { email: 'admin@e2e.test', password: 'password123' };
 
 export const ADDRESS = {
   fullName: 'Sara Ali',
-  phone: '+31 6 12345678',
-  street: 'Keizersgracht 12',
-  city: 'Amsterdam',
-  country: 'Netherlands',
+  phone: '+44 20 7946 0123',
+  street: '12 Market Street',
+  city: 'London',
+  country: 'United Kingdom',
 };
 
 // A new email address for every test, so tests never get in each other's way

@@ -11,7 +11,7 @@ test.describe('Orders', () => {
     await logout(page);
 
     // Customer: cart → checkout with cash on delivery
-    await newCustomer(page, request, 'Mila Jansen');
+    await newCustomer(page, request, 'Mia Johnson');
     await addToCart(page, 'gloves', { quantity: 2 }); // 2 × €89.00 = €178.00, free shipping
     const orderNo = await placeCashOrder(page);
     await expect(page.locator('.status')).toHaveText('Placed · cash');
@@ -39,7 +39,7 @@ test.describe('Orders', () => {
   });
 
   test('customer cancels with a reason, the admin sees it, stock comes back', async ({ page, request }) => {
-    await newCustomer(page, request, 'Daan Smit');
+    await newCustomer(page, request, 'Daniel Smith');
     await addToCart(page, 'bucket-bag');
     const orderNo = await placeCashOrder(page);
 
@@ -70,7 +70,7 @@ test.describe('Orders', () => {
   });
 
   test('admin cancels an order with a reason, the customer sees it', async ({ page, request }) => {
-    const customer = await newCustomer(page, request, 'Sem de Vries');
+    const customer = await newCustomer(page, request, 'Sam Wilson');
     await addToCart(page, 'keychain-brass');
     const orderNo = await placeCashOrder(page);
     const orderUrl = page.url();
@@ -95,7 +95,7 @@ test.describe('Orders', () => {
   });
 
   test('admin sees customers and their orders', async ({ page, request }) => {
-    const customer = await newCustomer(page, request, 'Fenna Mulder');
+    const customer = await newCustomer(page, request, 'Fiona Miller');
     await addToCart(page, 'merino-socks-oat', { quantity: 3 }); // 3 × €29.95 + €5.00 shipping = €94.85
     const orderNo = await placeCashOrder(page);
     await logout(page);
@@ -105,7 +105,7 @@ test.describe('Orders', () => {
     await page.getByPlaceholder('Search name or email…').fill(customer.email);
     const row = page.locator('.table tbody tr', { hasText: customer.email });
     await expect(row).toContainText('€0.00'); // cash isn't counted as spent until delivered
-    await row.getByRole('button', { name: 'Fenna Mulder' }).click();
+    await row.getByRole('button', { name: 'Fiona Miller' }).click();
     await expect(page.locator('.customer-orders')).toContainText(orderNo);
     await expect(page.locator('.customer-orders')).toContainText('€94.85');
     await expect(page.locator('.customer-orders')).toContainText('Cash on delivery');

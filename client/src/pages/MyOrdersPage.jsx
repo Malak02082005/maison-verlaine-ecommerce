@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { getMyOrders } from '../api';
 import StatusBadge from '../components/StatusBadge';
-import { formatDate, formatPrice, orderNumber, thumb } from '../utils';
+import { formatDate, formatPrice, orderNumber, plural, thumb } from '../utils';
 
 export default function MyOrdersPage() {
   const [orders, setOrders] = useState(null);
@@ -37,7 +37,7 @@ export default function MyOrdersPage() {
               <div className="order-row-info">
                 <strong>Order {orderNumber(o._id)}</strong>
                 <span className="muted">
-                  {formatDate(o.createdAt)} · {o.items.reduce((n, i) => n + i.quantity, 0)} items
+                  {formatDate(o.createdAt)} · {plural(o.items.reduce((n, i) => n + i.quantity, 0), 'item')}
                 </span>
               </div>
               <StatusBadge status={o.status} />

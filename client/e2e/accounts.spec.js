@@ -6,7 +6,7 @@ test.describe('User accounts', () => {
   test('register, get sent to the login page, then log in', async ({ page }) => {
     const email = uniqueEmail('nora');
     await page.goto('/register');
-    await page.getByLabel('Full name').fill('Nora Visser');
+    await page.getByLabel('Full name').fill('Nora Evans');
     await page.getByLabel('Email').fill(email);
     await page.getByLabel('Password').fill('short');
     await expect(page.getByText('At least 8 characters')).toBeVisible();
@@ -22,7 +22,7 @@ test.describe('User accounts', () => {
     await page.getByRole('button', { name: 'Log in' }).click();
     await expect(page).toHaveURL('/');
     await page.getByRole('button', { name: 'Account menu' }).click();
-    await expect(page.locator('.dropdown-name')).toHaveText('Nora Visser');
+    await expect(page.locator('.dropdown-name')).toHaveText('Nora Evans');
   });
 
   test('a wrong password is rejected', async ({ page, request }) => {
@@ -37,12 +37,12 @@ test.describe('User accounts', () => {
   });
 
   test('change your name and password on My account', async ({ page, request }) => {
-    const customer = await newCustomer(page, request, 'Lena Bakker');
+    const customer = await newCustomer(page, request, 'Lena Brooks');
     await page.getByRole('button', { name: 'Account menu' }).click();
     await page.locator('.dropdown').getByRole('link', { name: 'My account' }).click();
     await expect(page.getByRole('heading', { level: 1, name: 'My account' })).toBeVisible();
 
-    await page.getByLabel('Full name').fill('Lena de Boer');
+    await page.getByLabel('Full name').fill('Lena Carter');
     await page.getByRole('button', { name: 'Save details' }).click();
     await expect(page.locator('.alert-success').first()).toBeVisible();
 
@@ -56,7 +56,7 @@ test.describe('User accounts', () => {
     await logout(page);
     await login(page, customer.email, 'new-password-456');
     await page.getByRole('button', { name: 'Account menu' }).click();
-    await expect(page.locator('.dropdown-name')).toHaveText('Lena de Boer');
+    await expect(page.locator('.dropdown-name')).toHaveText('Lena Carter');
   });
 
   test('pages for logged-in users and admins are protected', async ({ page, request }) => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { getInventory, updateStock } from '../../api';
 import { CATEGORIES } from '../../catalog';
-import { formatPrice, thumb } from '../../utils';
+import { formatPrice, plural, thumb } from '../../utils';
 
 const STATUS = {
   in_stock: { label: 'In stock', tone: 'success' },
@@ -81,7 +81,7 @@ export default function AdminInventory() {
         <div className="stat stat-dark">
           <span>Units in stock</span>
           <strong>{data.totals.units}</strong>
-          <small>Across {data.products.length} products</small>
+          <small>Across {plural(data.products.length, 'product')}</small>
         </div>
         <div className="stat">
           <span>Stock value</span>

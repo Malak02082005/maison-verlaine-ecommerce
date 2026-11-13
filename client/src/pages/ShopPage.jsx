@@ -153,7 +153,7 @@ export default function ShopPage() {
           </div>
           {filters}
           <button className="btn btn-dark btn-block filters-done" onClick={() => setFiltersOpen(false)}>
-            Show {result.total} products
+            Show {result.total} {result.total === 1 ? 'product' : 'products'}
           </button>
         </aside>
         {filtersOpen && <div className="backdrop" onClick={() => setFiltersOpen(false)} />}

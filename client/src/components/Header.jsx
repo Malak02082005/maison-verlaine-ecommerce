@@ -97,7 +97,7 @@ export default function Header() {
             )}
           </div>
 
-          <Link to="/cart" className="icon-btn cart-btn" aria-label={`Cart, ${count} items`}>
+          <Link to="/cart" className="icon-btn cart-btn" aria-label={`Cart, ${count} ${count === 1 ? 'item' : 'items'}`}>
             <BagIcon />
             {count > 0 && <span className="cart-count">{count}</span>}
           </Link>

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { getAdminUser, getAdminUsers, setUserRole } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 import StatusBadge from '../../components/StatusBadge';
-import { formatDate, formatPrice, orderNumber } from '../../utils';
+import { formatDate, formatPrice, orderNumber, plural } from '../../utils';
 
 // /admin/customers: every account, with orders and money spent; click a row to see their orders
 export default function AdminCustomers() {
@@ -64,7 +64,7 @@ export default function AdminCustomers() {
       <div className="admin-head">
         <div>
           <h1>Customers</h1>
-          <p className="muted">{users ? `${customers} customers · ${users.length - customers} admins` : 'Loading…'}</p>
+          <p className="muted">{users ? `${plural(customers, 'customer')} · ${plural(users.length - customers, 'admin')}` : 'Loading…'}</p>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ export default function AdminCustomers() {
                                   <div>
                                     <strong>{orderNumber(o._id)}</strong>
                                     <span className="muted">
-                                      {formatDate(o.createdAt)} · {o.items.reduce((n, i) => n + i.quantity, 0)} items ·{' '}
+                                      {formatDate(o.createdAt)} · {plural(o.items.reduce((n, i) => n + i.quantity, 0), 'item')} ·{' '}
                                       {o.payment?.provider === 'cod' ? 'Cash on delivery' : 'Card'}
                                     </span>
                                   </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { deleteProduct, getProducts } from '../../api';
 import { PlusIcon } from '../../components/Icons';
-import { formatPrice, thumb, totalStock } from '../../utils';
+import { formatPrice, plural, thumb, totalStock } from '../../utils';
 import { CATEGORIES } from '../../catalog';
 
 export default function AdminProducts() {
@@ -43,7 +43,7 @@ export default function AdminProducts() {
       <div className="admin-head">
         <div>
           <h1>Products</h1>
-          <p className="muted">{products ? `${products.length} products in the shop` : 'Loading…'}</p>
+          <p className="muted">{products ? `${plural(products.length, 'product')} in the shop` : 'Loading…'}</p>
         </div>
         <Link to="/admin/products/new" className="btn btn-dark"><PlusIcon size={18} /> Add product</Link>
       </div>

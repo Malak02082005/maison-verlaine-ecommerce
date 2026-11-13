@@ -24,7 +24,7 @@ async function payWithCard(page, number) {
   await card.locator('[name="expiry"]').fill('12 / 34');
   await card.locator('[name="cvc"]').fill('123');
   const postalCode = card.locator('[name="postalCode"]');
-  if (await postalCode.isVisible().catch(() => false)) await postalCode.fill('1015 CJ');
+  if (await postalCode.isVisible().catch(() => false)) await postalCode.fill('12345');
   await page.getByRole('button', { name: /^Pay €/ }).click();
 }
 
@@ -33,7 +33,7 @@ test.describe('Card payments (Stripe test mode)', () => {
   test.setTimeout(120_000);
 
   test('pay with the test card 4242 4242 4242 4242, then the admin refunds it', async ({ page, request }) => {
-    await newCustomer(page, request, 'Iris Hendriks');
+    await newCustomer(page, request, 'Iris Hughes');
     await addToCart(page, 'silver-pendant-atelier'); // €39.95 + €5.00 shipping
     await fillCheckout(page, 'card');
     await page.getByRole('button', { name: 'Continue to payment' }).click();
@@ -59,7 +59,7 @@ test.describe('Card payments (Stripe test mode)', () => {
   });
 
   test('a declined card shows an error and the order stays unpaid', async ({ page, request }) => {
-    await newCustomer(page, request, 'Thijs Peters');
+    await newCustomer(page, request, 'Tom Peters');
     await addToCart(page, 'cashmere-beanie-oat');
     await fillCheckout(page, 'card');
     await page.getByRole('button', { name: 'Continue to payment' }).click();
