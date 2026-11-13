@@ -1,0 +1,7 @@
+node_modules/
+.env
+dist/
+
+# Videos are too big for GitHub; upload them elsewhere and link them in the README
+*.mp4
+*.mov

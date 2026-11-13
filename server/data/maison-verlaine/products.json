@@ -1,0 +1,267 @@
+{
+  "brand": "Maison Verlaine",
+  "count": 29,
+  "products": [
+    {
+      "id": "mv-tote",
+      "name": "Classic Tote Bag",
+      "description": "Structured tote in full-grain leather with hand-stitched edges. Made to last for decades.",
+      "price_eur": 89,
+      "category": "bags",
+      "main_photo": "images/mv-tote-black.jpg",
+      "detail_photo": "images/mv-tote-black-detail.jpg"
+    },
+    {
+      "id": "mv-crossbody",
+      "name": "Mini Bag",
+      "description": "Compact crossbody in vegetable-tanned leather with gold-tone fastenings. Small, but everything you need.",
+      "price_eur": 59,
+      "category": "bags",
+      "main_photo": "images/mv-mini-white.jpg",
+      "detail_photo": "images/mv-mini-white-detail.jpg"
+    },
+    {
+      "id": "mv-clutch",
+      "name": "Evening Clutch",
+      "description": "Slim evening clutch with a magnetic closure and a detachable chain strap. For the evenings that count.",
+      "price_eur": 125,
+      "category": "bags",
+      "main_photo": "images/mv-clutch-gold.jpg",
+      "detail_photo": "images/mv-clutch-gold-detail.jpg"
+    },
+    {
+      "id": "mv-backpack",
+      "name": "Backpack",
+      "description": "Compact backpack in full-grain leather with a magnetic flap and a padded laptop compartment. For days that run long.",
+      "price_eur": 159,
+      "category": "bags",
+      "main_photo": "images/mv-backpack-blue.jpg",
+      "detail_photo": "images/mv-backpack-blue-detail.jpg"
+    },
+    {
+      "id": "mv-bucket",
+      "name": "Bucket Bag",
+      "description": "Soft bucket bag with a drawstring and a detachable shoulder strap, in brushed calfskin.",
+      "price_eur": 78,
+      "category": "bags",
+      "main_photo": "images/mv-bucket-beige.jpg",
+      "detail_photo": "images/mv-bucket-beige-detail.jpg"
+    },
+    {
+      "id": "mv-shoulder",
+      "name": "Shoulder Bag",
+      "description": "Softly padded shoulder bag, lined with suede. Understated luxury for every day.",
+      "price_eur": 95,
+      "category": "bags",
+      "main_photo": "images/mv-shoulder-burgundy.jpg",
+      "detail_photo": "images/mv-shoulder-burgundy-detail.jpg"
+    },
+    {
+      "id": "mv-mini",
+      "name": "Mini Bag – Ivory",
+      "description": "Small structured mini bag with a chain strap; just enough room for your phone, cards and keys.",
+      "price_eur": 149.95,
+      "category": "bags",
+      "main_photo": "images/mv-mini.jpg",
+      "detail_photo": "images/mv-mini-detail.jpg"
+    },
+    {
+      "id": "mv-hobo",
+      "name": "Hobo Bag",
+      "description": "Supple hobo bag in tumbled leather with a single long strap, roomy and light.",
+      "price_eur": 112,
+      "category": "bags",
+      "main_photo": "images/mv-hobo-grey.jpg",
+      "detail_photo": "images/mv-hobo-grey-detail.jpg"
+    },
+    {
+      "id": "mv-top-handle",
+      "name": "Signature Top-Handle Bag – Noir",
+      "description": "Our signature bag: structured, handmade in our atelier and finished with the subtle MS monogram.",
+      "price_eur": 249.95,
+      "category": "bags",
+      "main_photo": "images/mv-top-handle.jpg",
+      "detail_photo": "images/mv-top-handle-detail.jpg"
+    },
+    {
+      "id": "mv-wool-coat",
+      "name": "Wool Overcoat – Camel",
+      "description": "Double-faced wool, a straight relaxed fit and a cupro lining. Can be cared for in our atelier.",
+      "price_eur": 189.95,
+      "category": "coats",
+      "main_photo": "images/mv-wool-coat.jpg",
+      "detail_photo": "images/mv-wool-coat-detail.jpg"
+    },
+    {
+      "id": "mv-leather-jacket",
+      "name": "Leather Jacket – Noir",
+      "description": "Lambskin jacket with a straight collar and a subtle MS button, lined with cupro.",
+      "price_eur": 599.95,
+      "category": "coats",
+      "main_photo": "images/mv-leather-jacket.jpg",
+      "detail_photo": "images/mv-leather-jacket-detail.jpg"
+    },
+    {
+      "id": "mv-trench",
+      "name": "Trench Coat – Sand",
+      "description": "Classic trench in densely woven cotton gabardine with a belt and horn buttons.",
+      "price_eur": 449.95,
+      "category": "coats",
+      "main_photo": "images/mv-trench.jpg",
+      "detail_photo": "images/mv-trench-detail.jpg"
+    },
+    {
+      "id": "mv-puffer",
+      "name": "Puffer Jacket – Olive",
+      "description": "Lightweight padded jacket with recycled down, water-repellent and packable.",
+      "price_eur": 399.95,
+      "category": "coats",
+      "main_photo": "images/mv-puffer.jpg",
+      "detail_photo": "images/mv-puffer-detail.jpg"
+    },
+    {
+      "id": "mv-blazer",
+      "name": "Wool Blazer – Charcoal",
+      "description": "Unlined blazer in Italian wool, lightly tailored, with horn buttons.",
+      "price_eur": 349.95,
+      "category": "coats",
+      "main_photo": "images/mv-blazer.jpg",
+      "detail_photo": "images/mv-blazer-detail.jpg"
+    },
+    {
+      "id": "mv-wrap-coat",
+      "name": "Cashmere Wrap Coat – Oat",
+      "description": "Soft cashmere wrap coat with a belt, cut in a loose, timeless line.",
+      "price_eur": 229.95,
+      "category": "coats",
+      "main_photo": "images/mv-wrap-coat.jpg",
+      "detail_photo": "images/mv-wrap-coat-detail.jpg"
+    },
+    {
+      "id": "mv-scarf",
+      "name": "Silk Scarf – Atelier Print",
+      "description": "Hand-rolled silk scarf in our atelier print. A signature piece that elevates any outfit.",
+      "price_eur": 79.95,
+      "category": "accessories",
+      "main_photo": "images/mv-scarf.jpg",
+      "detail_photo": "images/mv-scarf-detail.jpg"
+    },
+    {
+      "id": "mv-belt",
+      "name": "Leather Belt",
+      "description": "Full-grain leather belt with a solid brass buckle. One size, for life.",
+      "price_eur": 69,
+      "category": "accessories",
+      "main_photo": "images/mv-belt-black.jpg",
+      "detail_photo": "images/mv-belt-black-detail.jpg"
+    },
+    {
+      "id": "mv-sunglasses",
+      "name": "Sunglasses",
+      "description": "Handmade acetate sunglasses with polarised lenses, delivered in a soft case.",
+      "price_eur": 149,
+      "category": "accessories",
+      "main_photo": "images/mv-sunglasses-gold.jpg",
+      "detail_photo": "images/mv-sunglasses-gold-detail.jpg"
+    },
+    {
+      "id": "mv-watch",
+      "name": "Watch",
+      "description": "Minimalist steel watch with a Swiss quartz movement and a leather strap.",
+      "price_eur": 299,
+      "category": "accessories",
+      "main_photo": "images/mv-watch-rosegold.jpg",
+      "detail_photo": "images/mv-watch-rosegold-detail.jpg"
+    },
+    {
+      "id": "mv-gloves",
+      "name": "Gloves",
+      "description": "Lambskin gloves with a cashmere lining, touchscreen-friendly.",
+      "price_eur": 89,
+      "category": "accessories",
+      "main_photo": "images/mv-gloves-black.jpg",
+      "detail_photo": "images/mv-gloves-black-detail.jpg"
+    },
+    {
+      "id": "mv-hat",
+      "name": "Cashmere Beanie – Oat",
+      "description": "Featherlight cashmere beanie in a soft oat shade. The quiet accessory of the season.",
+      "price_eur": 44.95,
+      "category": "accessories",
+      "main_photo": "images/mv-hat.jpg",
+      "detail_photo": "images/mv-hat-detail.jpg"
+    },
+    {
+      "id": "mv-cardholder",
+      "name": "Leather Card Holder – Noir",
+      "description": "Card holder in textured leather with six slots. Discreet, light and built for everyday use.",
+      "price_eur": 34.95,
+      "category": "accessories",
+      "main_photo": "images/mv-cardholder.jpg",
+      "detail_photo": "images/mv-cardholder-detail.jpg"
+    },
+    {
+      "id": "mv-wallet",
+      "name": "Leather Wallet – Noir",
+      "description": "Slim wallet in full-grain leather with eight card slots and a coin pocket.",
+      "price_eur": 159.95,
+      "category": "accessories",
+      "main_photo": "images/mv-wallet.jpg",
+      "detail_photo": "images/mv-wallet-detail.jpg"
+    },
+    {
+      "id": "mv-keychain",
+      "name": "Keychain – Brass",
+      "description": "Solid brass key ring with a leather loop and MS engraving.",
+      "price_eur": 59.95,
+      "category": "accessories",
+      "main_photo": "images/mv-keychain.jpg",
+      "detail_photo": "images/mv-keychain-detail.jpg"
+    },
+    {
+      "id": "mv-socks",
+      "name": "Merino Socks – Oat",
+      "description": "Finely knitted merino wool socks with a seamless finish. Set of two pairs.",
+      "price_eur": 29.95,
+      "category": "accessories",
+      "main_photo": "images/mv-socks.jpg",
+      "detail_photo": "images/mv-socks-detail.jpg"
+    },
+    {
+      "id": "mv-travel-pouch",
+      "name": "Travel Pouch – Noir",
+      "description": "Leather travel pouch with a zip and compartments for cables and documents.",
+      "price_eur": 89.95,
+      "category": "accessories",
+      "main_photo": "images/mv-travel-pouch.jpg",
+      "detail_photo": "images/mv-travel-pouch-detail.jpg"
+    },
+    {
+      "id": "mv-pocket-square",
+      "name": "Silk Scarf",
+      "description": "Silk pocket square in our heritage print with a hand-rolled edge. Made to be shown.",
+      "price_eur": 79,
+      "category": "accessories",
+      "main_photo": "images/mv-scarf-floral.jpg",
+      "detail_photo": "images/mv-scarf-floral-detail.jpg"
+    },
+    {
+      "id": "mv-signet-ring",
+      "name": "Gold-Vermeil Signet Ring – MS",
+      "description": "Solid gold-vermeil ring with the subtle MS monogram, finished by hand.",
+      "price_eur": 49.95,
+      "category": "jewelry",
+      "main_photo": "images/mv-signet-ring.jpg",
+      "detail_photo": "images/mv-signet-ring-detail.jpg"
+    },
+    {
+      "id": "mv-pendant",
+      "name": "Silver Pendant – Atelier",
+      "description": "Fine silver necklace with a small atelier medallion. Wear it on its own or layered.",
+      "price_eur": 39.95,
+      "category": "jewelry",
+      "main_photo": "images/mv-pendant.jpg",
+      "detail_photo": "images/mv-pendant-detail.jpg"
+    }
+  ]
+}
