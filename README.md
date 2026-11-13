@@ -35,6 +35,40 @@ Built for the **Auspify Full Stack Internship, Task 4: E-Commerce Website**.
 - **Orders**: move orders from paid/placed to shipped to delivered, or cancel them with a reason (card payments are refunded automatically)
 - **Customers**: search customers, see their orders and total spent, and make someone an admin
 
+## Screenshots
+
+### Shop
+
+| Home page | Product catalogue |
+|---|---|
+| ![Home page](docs/screenshots/home.png) | ![Product catalogue with filters](docs/screenshots/shop.png) |
+
+| Shopping cart | Checkout |
+|---|---|
+| ![Shopping cart](docs/screenshots/cart.png) | ![Checkout with card or cash on delivery](docs/screenshots/checkout.png) |
+
+| Log in | My account |
+|---|---|
+| ![Log in](docs/screenshots/login.png) | ![My account](docs/screenshots/account.png) |
+
+| My orders |
+|---|
+| ![My orders](docs/screenshots/my-orders.png) |
+
+### Admin panel
+
+| Dashboard | Products |
+|---|---|
+| ![Admin dashboard](docs/screenshots/admin-dashboard.png) | ![Admin products](docs/screenshots/admin-products.png) |
+
+| Stock | Orders |
+|---|---|
+| ![Admin stock](docs/screenshots/admin-stock.png) | ![Admin orders](docs/screenshots/admin-orders.png) |
+
+| Customers |
+|---|
+| ![Admin customers](docs/screenshots/admin-customers.png) |
+
 ## Tech stack
 
 | Part | Technologies |
