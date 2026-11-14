@@ -1,34 +1,80 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useAuth } from './AuthContext';
 import { MAX_PER_ITEM, itemKey } from './cartItems';
 
 const CartContext = createContext(null);
-const CART_KEY = 'shop_cart';
 
 // The cart lives in the browser (localStorage), so it works before logging in and survives a
 // refresh. Prices here are only for display: the server recalculates everything at checkout.
 //
+// Every account has its own cart on this device ("shop_cart:<user id>"), and so does a visitor
+// who isn't logged in ("shop_cart:guest"):
+//   - logging in moves the guest's items into that account's cart (so "add to cart, then log
+//     in at checkout" keeps the items)
+//   - logging out switches to the (empty) guest cart; the account's cart is kept for next time
+//
 // Each item: { productId, slug, name, image, color, price, size, quantity, stock }
-const loadCart = () => {
+const GUEST = 'guest';
+const LEGACY_KEY = 'shop_cart'; // the single shared cart used before carts were per account
+const keyFor = (owner) => `shop_cart:${owner}`;
+
+const limitFor = (stock) => Math.min(stock ?? MAX_PER_ITEM, MAX_PER_ITEM);
+
+const read = (key) => {
   try {
-    const items = JSON.parse(localStorage.getItem(CART_KEY));
+    const items = JSON.parse(localStorage.getItem(key));
     return Array.isArray(items) ? items : [];
   } catch {
     return [];
   }
 };
 
+const readGuest = () => {
+  const guest = read(keyFor(GUEST));
+  return guest.length ? guest : read(LEGACY_KEY);
+};
+
+// Adds the guest's items to an account's cart (same product and size: quantities add up, within the limit)
+const mergeInto = (items, extra) => {
+  const list = items.map((i) => ({ ...i }));
+  for (const e of extra) {
+    const existing = list.find((i) => itemKey(i) === itemKey(e));
+    if (existing) existing.quantity = Math.min(existing.quantity + e.quantity, limitFor(existing.stock));
+    else list.push(e);
+  }
+  return list;
+};
+
+// The cart to show for an owner: nothing while the login is still being checked (null)
+const loadFor = (owner) => {
+  if (!owner) return [];
+  if (owner === GUEST) return readGuest();
+  return mergeInto(read(keyFor(owner)), readGuest());
+};
+
 export function CartProvider({ children }) {
-  const [items, setItems] = useState(loadCart);
+  const { user, checking } = useAuth();
+  const owner = checking ? null : user?._id || GUEST;
+  const [cart, setCart] = useState(() => ({ owner, items: loadFor(owner) }));
+
+  // Someone logged in or out: switch to their cart right away (during render, so the
+  // previous person's cart is never shown)
+  if (cart.owner !== owner) setCart({ owner, items: loadFor(owner) });
+  const { items } = cart;
 
   useEffect(() => {
+    if (!cart.owner) return;
     try {
-      localStorage.setItem(CART_KEY, JSON.stringify(items));
+      localStorage.setItem(keyFor(cart.owner), JSON.stringify(cart.items));
+      // The guest's items now belong to this account, so the guest cart starts empty again
+      if (cart.owner !== GUEST) localStorage.removeItem(keyFor(GUEST));
+      localStorage.removeItem(LEGACY_KEY);
     } catch {
       // storage full or blocked: the cart still works until the page is closed
     }
-  }, [items]);
+  }, [cart]);
 
-  const limitFor = (stock) => Math.min(stock ?? MAX_PER_ITEM, MAX_PER_ITEM);
+  const setItems = (update) => setCart((c) => ({ ...c, items: update(c.items) }));
 
   // Adds `quantity` of a product in `size`. Returns how many were actually added (stock limit).
   const add = (product, size, quantity = 1) => {
@@ -77,7 +123,7 @@ export function CartProvider({ children }) {
       })
     );
 
-  const clear = () => setItems([]);
+  const clear = () => setItems(() => []);
 
   const count = items.reduce((sum, i) => sum + i.quantity, 0);
   const subtotal = Math.round(items.reduce((sum, i) => sum + i.price * i.quantity, 0) * 100) / 100;

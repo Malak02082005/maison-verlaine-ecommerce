@@ -13,7 +13,7 @@ Built for the **Auspify Full Stack Internship, Task 4: E-Commerce Website**.
 - Featured products and new arrivals on the home page
 
 ### Shopping cart
-- Add, update and remove items; the cart is saved in the browser
+- Add, update and remove items; the cart is saved in the browser, and every account has its own cart (items added before logging in move into the account)
 - Free shipping from €100, otherwise a flat €5 fee
 - Prices are always recalculated on the server, so the cart can't be tampered with
 
@@ -197,12 +197,12 @@ npm run test:e2e
 
 These tests use [Playwright](https://playwright.dev) to click through the real website in Google Chrome, the way a customer and an admin would. Playwright starts its own API (port 5181) with a fresh in-memory database and its own frontend (port 5185), so your real database is never touched and your normal dev servers can keep running. Google Chrome must be installed.
 
-The 21 tests cover these workflows from start to finish:
+The 22 tests cover these workflows from start to finish:
 
 | Area | What is tested |
 | --- | --- |
 | Product catalogue | Home page, filters (category, type, colour with search), sorting, header search, product pages, unknown products |
-| Shopping cart | Adding, changing and removing items, shipping fee vs. free shipping, cart kept after reload, stock limits, login required for checkout |
+| Shopping cart | Adding, changing and removing items, shipping fee vs. free shipping, cart kept after reload, stock limits, login required for checkout, a separate cart per account |
 | User accounts | Register and get sent to the login page, wrong password, changing name and password, protected customer and admin pages |
 | Orders | Cash-on-delivery order from cart to delivery with stock going down, cancelling with a reason by the customer and by the admin, admin customer overview |
 | Product management | Admin adds, edits and deletes a product; sells out and restocks a product |

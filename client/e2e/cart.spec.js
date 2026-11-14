@@ -1,8 +1,9 @@
 // Shopping cart: adding, changing and removing items, totals and shipping.
 import { test, expect } from './fixtures';
-import { addToCart } from './helpers';
+import { addToCart, login, logout, newCustomer } from './helpers';
 
 const summary = (page, label) => page.locator('.summary-row', { hasText: label }).locator('span').last();
+const cartLink = (page) => page.locator('header a.cart-btn');
 
 test.describe('Shopping cart', () => {
   test('add, change and remove items', async ({ page }) => {
@@ -41,10 +42,38 @@ test.describe('Shopping cart', () => {
     await expect(page.getByRole('button', { name: 'All in your cart' })).toBeDisabled();
   });
 
-  test('checking out asks you to log in first', async ({ page }) => {
+  test('checking out asks you to log in first, and the cart comes along', async ({ page, request }) => {
     await addToCart(page, 'leather-belt');
     await page.goto('/cart');
     await page.getByRole('button', { name: 'Checkout' }).click();
     await expect(page).toHaveURL(/\/login$/);
+
+    // After logging in, the items added as a guest are in the account's cart
+    await newCustomer(page, request, 'Grace Turner');
+    await page.goto('/cart');
+    await expect(page.locator('.cart-item-name')).toHaveText(['Leather Belt']);
+  });
+
+  test('every account has its own cart', async ({ page, request }) => {
+    const anna = await newCustomer(page, request, 'Anna Price');
+    await addToCart(page, 'leather-belt');
+    await expect(cartLink(page)).toHaveAccessibleName('Cart, 1 item');
+
+    // Logging out empties the cart on screen
+    await logout(page);
+    await expect(cartLink(page)).toHaveAccessibleName('Cart, 0 items');
+
+    // Another customer on the same computer doesn't see Anna's cart
+    await newCustomer(page, request, 'Ben Hall');
+    await expect(cartLink(page)).toHaveAccessibleName('Cart, 0 items');
+    await addToCart(page, 'merino-socks-oat', { quantity: 2 });
+    await expect(cartLink(page)).toHaveAccessibleName('Cart, 2 items');
+    await logout(page);
+
+    // Anna gets her own cart back when she logs in again
+    await login(page, anna.email, anna.password);
+    await expect(cartLink(page)).toHaveAccessibleName('Cart, 1 item');
+    await page.goto('/cart');
+    await expect(page.locator('.cart-item-name')).toHaveText(['Leather Belt']);
   });
 });
