@@ -2,7 +2,7 @@
 
 A full-stack online fashion store built with **React**, **Node.js/Express** and **MongoDB**. Customers can browse a catalogue of bags, coats, accessories and jewelry, add products to a cart, and check out with **Stripe** (test mode) or **cash on delivery**. Admins manage products, stock, orders and customers from a dashboard.
 
-Built for the **Auspify Full Stack Internship, Task 4: E-Commerce Website**.
+Built as **Task 4** of the Auspify Technologies Full Stack Development Internship.
 
 🎥 **Demo video:** [Watch the demo](https://drive.google.com/file/d/1SdjbspDn4WZjWL4ULtLl9PTZVDceT42Z/view)
 
@@ -222,6 +222,37 @@ After a run, `npm run test:e2e:report` opens a report with screenshots of any fa
 | Admin | `GET /api/admin/stats`, `GET /api/admin/orders`, `PATCH /api/admin/orders/:id/status`, `GET /api/admin/inventory`, `PATCH /api/admin/products/:id/stock`, `GET /api/admin/users`, `GET /api/admin/users/:id`, `PATCH /api/admin/users/:id/role` |
 | Other | `GET /api/catalog` (categories, sizes, shipping, cancel reasons), `GET /api/health` |
 
+### Data model
+
+There are three collections:
+
+- **User**: name, email (unique), password (hashed with bcrypt, never sent to the browser) and role (`customer` or `admin`).
+- **Product**: name, a unique URL `slug` made from the name, description, category, type, colour, price, photos, a `featured` flag, and a `sizes` list where each size has its own stock.
+- **Order**: the customer, the items, the shipping address, subtotal, shipping fee and total, a `status` (`pending_payment`, `placed`, `paid`, `shipped`, `delivered` or `cancelled`), the payment method (`stripe` or `cod`), the cancellation reason, and the dates it was paid, shipped, delivered or cancelled. Each item keeps a copy of the product's name, photo and price at the time of the order, so past orders stay correct when a product is changed or deleted.
+
+Stock is reserved the moment an order is placed (in one database operation, so two customers can never buy the last item at the same time) and returned if the order is cancelled. The fixed lists (categories, types, sizes, shipping fee, cancel reasons) live in `server/data/catalog.js`.
+
 ## Product data
 
 The products, descriptions, prices and photos come from the Maison Verlaine product package in `server/data/maison-verlaine/` (see the README there). The shop adds a product type, colour, sizes and stock for each product.
+
+## Deployment
+
+The backend and frontend deploy separately. One common setup:
+
+**Backend on [Render](https://render.com)** (Web Service)
+1. Root directory: `server`. Build command: `npm install`. Start command: `npm start`.
+2. Add the environment variables `MONGO_URI`, `JWT_SECRET`, `STRIPE_SECRET_KEY` and `CLIENT_URL` (your frontend's address, set after step 2 of the frontend below).
+3. In MongoDB Atlas → **Network Access**, allow connections from anywhere (`0.0.0.0/0`), since Render's IP addresses change.
+4. Run `npm run seed` and `npm run create-admin` once (from the Render shell, or locally with the same `MONGO_URI`).
+
+**Frontend on [Vercel](https://vercel.com)**
+1. Import the repository and set the root directory to `client`. Vercel detects Vite automatically.
+2. Add the environment variables `VITE_API_URL` = your Render backend address (e.g. `https://your-api.onrender.com`) and `VITE_STRIPE_PUBLISHABLE_KEY`.
+3. Deploy, then put the Vercel address in `CLIENT_URL` on Render and redeploy the backend.
+
+`client/vercel.json` makes refreshes on pages like `/shop` or `/admin/orders` load the app instead of a 404. The product photos are in `client/public/products/`, so they're served by Vercel along with the site.
+
+## Author
+
+**Malak Makar** · Auspify Technologies Full Stack Development Internship · [GitHub](https://github.com/Malak02082005) · [LinkedIn](https://www.linkedin.com/in/makar-makar/)
