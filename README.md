@@ -4,6 +4,8 @@ A full-stack online fashion store built with **React**, **Node.js/Express** and 
 
 Built for the **Auspify Full Stack Internship, Task 4: E-Commerce Website**.
 
+🎥 **Demo video:** [Watch the demo](https://drive.google.com/file/d/1SdjbspDn4WZjWL4ULtLl9PTZVDceT42Z/view)
+
 ## Features
 
 ### Product catalogue
